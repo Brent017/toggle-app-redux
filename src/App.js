@@ -1,26 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
+import { changeTheme } from "./redux";
 import Menu from "./Menu";
 import Favorite from "./Favorite";
 import Button from "./Button";
 import Header from "./Header";
 import styles from "./styles.css";
-import { ThemeContextConsumer } from "./themeContext";
 
-function App() {
+function App(props) {
   return (
-    <ThemeContextConsumer>
-      {context => (
-        <div className={`${context.theme}-theme`}>
-          <Menu />
-          <hr />
-          <Favorite />
-          <hr />
-          <Header />
-          <Button />
-        </div>
-      )}
-    </ThemeContextConsumer>
+    <div className="{props.theme}-theme">
+      <Menu />
+      <hr />
+      <Favorite />
+      <hr />
+      <Header />
+      <Button onClick={props.theme} />
+    </div>
   );
 }
 
-export default App;
+// function mapStateToProps(state) {
+//   return {
+//     theme: state
+//   };
+// }
+
+// const mapDispatchToProps = {
+//   changeTheme
+// };
+
+export default connect(state => ({ theme: state }), { changeTheme })(App);
