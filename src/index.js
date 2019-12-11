@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import App from "./App";
-import { ThemeContextProvider } from "./themeContext";
 
 ReactDOM.render(
-  <ThemeContextProvider>
+  <Provider>
     <App />
-  </ThemeContextProvider>,
+  </Provider>,
   document.getElementById("root")
 );
