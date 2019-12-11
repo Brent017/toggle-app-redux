@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { changeTheme } from "./redux";
 import Menu from "./Menu";
 import Favorite from "./Favorite";
@@ -8,6 +8,8 @@ import Header from "./Header";
 import styles from "./styles.css";
 
 function App(props) {
+  const theme = useSelector(state => state);
+  const dispatch = useDispatch();
   return (
     <div className="{props.theme}-theme">
       <Menu />
@@ -15,19 +17,9 @@ function App(props) {
       <Favorite />
       <hr />
       <Header />
-      <Button onClick={props.theme} />
+      <Button onClick={() => dispatch(changeTheme())} />
     </div>
   );
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     theme: state
-//   };
-// }
-
-// const mapDispatchToProps = {
-//   changeTheme
-// };
-
-export default connect(state => ({ theme: state }), { changeTheme })(App);
+export default App;
